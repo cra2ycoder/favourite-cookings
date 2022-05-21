@@ -8,14 +8,26 @@ import { fetcher } from '../utils'
 
 function Index() {
   const { data = [], error = {} } = useSwr('/api/home', fetcher)
-  console.log({ data })
 
   return (
     <Container maxWidth="lg">
       <Box padding={2} marginBottom={10}>
-        <Typography align="center" fontSize={72} fontFamily={'inherit'}>
+        <Typography
+          align="center"
+          fontSize={72}
+          fontFamily={'inherit'}
+          fontWeight={900}
+        >
           Favorite Cookings
         </Typography>
+        <div
+          style={{
+            height: '6px',
+            background: '#d00d0d',
+            width: '100%',
+            margin: 'auto',
+          }}
+        ></div>
       </Box>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={3}>
