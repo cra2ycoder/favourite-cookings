@@ -8,7 +8,11 @@ export default function MultiActionAreaCard(props) {
   const { title = '', desc = '', url = '', cta = '' } = props
 
   return (
-    <Card square={true} variant="outlined">
+    <Card
+      square={true}
+      variant="outlined"
+      style={{ display: 'flex', height: '100%' }}
+    >
       <CardActionArea href={cta}>
         <CardMedia
           component="img"
@@ -16,13 +20,13 @@ export default function MultiActionAreaCard(props) {
           image={url}
           alt="green iguana"
         />
-        <CardContent style={{ fontFamily: 'Amatic SC' }}>
+        <CardContent>
           <Typography
             gutterBottom
             variant="h5"
             component="div"
-            fontFamily={'inherit'}
-            fontSize={40}
+            fontSize={30}
+            fontWeight={500}
           >
             {title}
           </Typography>
@@ -33,13 +37,6 @@ export default function MultiActionAreaCard(props) {
           )}
         </CardContent>
       </CardActionArea>
-      {/* <CardActions>
-        <Link href={cta}>
-          <Button size="small" color="primary">
-            Explore
-          </Button>
-        </Link>
-      </CardActions> */}
     </Card>
   )
 }
