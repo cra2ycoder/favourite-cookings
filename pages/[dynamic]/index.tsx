@@ -5,6 +5,7 @@ import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
 import CustomCard from '@components/Card'
 import { SecondaryHeading } from '@components/Base/Typography'
+import Breadcrumbs from '@components/Base/Breadcrumbs'
 import { fetcher } from '@utils/index'
 
 function DynamicPage() {
@@ -14,6 +15,7 @@ function DynamicPage() {
   return (
     <Container maxWidth="lg">
       <SecondaryHeading text={asPath} />
+      <Breadcrumbs links={['home', asPath]} />
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={3}>
           {data?.map((x, i) => (

@@ -5,22 +5,20 @@ import CardMedia from '@mui/material/CardMedia'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import DetailList from '@components/DetailList'
+import { SecondaryHeading } from '@components/Base/Typography'
+import Breadcrumbs from '@components/Base/Breadcrumbs'
 import { fetcher } from '@utils/index'
 
 export default function Detail() {
   const { asPath = '', pathname = '' } = useRouter()
-
   const { data = [], error = {} } = useSwr(`/api${asPath}`, fetcher)
 
-  console.log({ asPath, data })
+  // console.log({ asPath, data })
 
   return (
     <Container maxWidth="lg">
-      <Box padding={2}>
-        <Typography align="center" fontSize={72} fontFamily={'inherit'}>
-          @{asPath}
-        </Typography>
-      </Box>
+      <SecondaryHeading text={asPath} />
+      <Breadcrumbs links={['home', asPath]} />
       <Box>
         <Box>
           <CardMedia component="img" height="240" image={data.url} />
