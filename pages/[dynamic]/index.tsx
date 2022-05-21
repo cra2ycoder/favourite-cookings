@@ -3,24 +3,17 @@ import { useRouter } from 'next/router'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
-import Typography from '@mui/material/Typography'
 import CustomCard from '@components/Card'
+import { SecondaryHeading } from '@components/Base/Typography'
 import { fetcher } from '@utils/index'
 
 function DynamicPage() {
   const { asPath = '', pathname = '' } = useRouter()
-
   const { data = [], error = {} } = useSwr(`/api${asPath}`, fetcher)
-
-  console.log({ asPath, data })
 
   return (
     <Container maxWidth="lg">
-      <Box padding={2}>
-        <Typography align="center" fontSize={72} fontFamily={'inherit'}>
-          @{asPath}
-        </Typography>
-      </Box>
+      <SecondaryHeading text={asPath} />
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={3}>
           {data?.map((x, i) => (
