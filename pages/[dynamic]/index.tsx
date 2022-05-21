@@ -4,8 +4,8 @@ import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
-import CustomCard from '../../components/Card'
-import { fetcher } from '../../utils'
+import CustomCard from '@components/Card'
+import { fetcher } from '@utils/index'
 
 function DynamicPage() {
   const { asPath = '', pathname = '' } = useRouter()

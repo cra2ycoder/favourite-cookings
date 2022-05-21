@@ -4,8 +4,8 @@ import Box from '@mui/material/Box'
 import CardMedia from '@mui/material/CardMedia'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
-import DetailList from '../../components/DetailList'
-import { fetcher } from '../../utils'
+import DetailList from '@components/DetailList'
+import { fetcher } from '@utils/index'
 
 export default function Detail() {
   const { asPath = '', pathname = '' } = useRouter()
