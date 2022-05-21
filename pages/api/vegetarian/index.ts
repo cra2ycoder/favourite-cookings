@@ -1,11 +1,4 @@
-const vegetables = [
-  {
-    title: 'veg pulavu',
-    desc: '',
-    url: '',
-    cta: '/vegetarian/veg-pulavu',
-  },
-]
+const vegetables = []
 
 export default function handler(req, res) {
   if (req.method === 'GET') {

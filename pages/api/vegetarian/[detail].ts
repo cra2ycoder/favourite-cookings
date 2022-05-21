@@ -1,7 +1,4 @@
-const details = {
-  name: 'veg pulavu',
-  url: '',
-}
+const details = {}
 
 export default function handler(req, res) {
   if (req.method === 'GET') {
