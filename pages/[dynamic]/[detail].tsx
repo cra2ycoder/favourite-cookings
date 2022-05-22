@@ -61,3 +61,13 @@ export default function Detail() {
     </Container>
   )
 }
+
+/**
+ *
+ * @todo
+ * where we have to connect to DB to handle the data
+ * @returns
+ */
+export async function getServerSideProps() {
+  return {}
+}

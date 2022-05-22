@@ -25,5 +25,15 @@ function Index() {
   )
 }
 
+/**
+ *
+ * @todo
+ * where we have to connect to DB to handle the data
+ * @returns
+ */
+export async function getServerSideProps() {
+  return {}
+}
+
 export { Index }
 export default Index
