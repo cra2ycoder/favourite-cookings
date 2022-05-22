@@ -7,7 +7,7 @@ interface IHeadingProps {
 
 function PrimaryHeading(props: IHeadingProps) {
   return (
-    <Box padding={2} marginBottom={10}>
+    <Box width="100%" paddingTop="2rem" marginBottom="2rem">
       <Typography
         align="center"
         fontSize={72}
@@ -30,7 +30,7 @@ function PrimaryHeading(props: IHeadingProps) {
 
 function SecondaryHeading(props: IHeadingProps) {
   return (
-    <Box padding={2}>
+    <Box width="100%" paddingTop="2rem" marginBottom="1rem">
       <Typography align="center" fontSize={72} fontWeight={700}>
         {props?.text.split('/')}
       </Typography>
