@@ -11,7 +11,7 @@ export default function MultiActionAreaCard(props) {
     <Card
       square={true}
       variant="outlined"
-      style={{ display: 'flex', height: '100%' }}
+      style={{ display: 'flex', height: '100%', borderRadius: '0.5rem' }}
     >
       <CardActionArea href={cta}>
         <CardMedia
