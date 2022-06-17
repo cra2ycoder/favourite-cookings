@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import useSwr from 'swr'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
@@ -8,11 +8,25 @@ import { Filter } from '@components/Base/Filter'
 import { PrimaryHeading } from '@components/Base/Typography'
 import CircularProgress from '@mui/material/CircularProgress'
 import Typography from '@mui/material/Typography'
-import { fetcher } from '../utils'
+import { fetcher, filterDataByMap } from '@utils/index'
 
 function Index() {
   const { data = {}, error = {} } = useSwr('/api/home', fetcher)
+
+  const [recipeList, setRecipeList] = useState([])
   const [activeVideoCard, setActiveVideoCard] = useState(-1)
+
+  const onFilterChange = function (curFilter) {
+    const filteredList = filterDataByMap(curFilter, data.items)
+    console.log({ filteredList })
+    setRecipeList([...filteredList])
+  }
+
+  useEffect(() => {
+    if (Object.keys(data).length) {
+      setRecipeList(data?.items || [])
+    }
+  }, [data])
 
   return (
     <Container maxWidth="lg">
@@ -25,9 +39,9 @@ function Index() {
         }}
       >
         <Typography align="center" fontSize={32} fontWeight={700}>
-          Total: {data?.items?.length}
+          Total: {recipeList.length}
         </Typography>
-        <Filter />
+        <Filter onFilterChange={onFilterChange} />
       </Box>
       <Box
         sx={{ flexGrow: 1 }}
@@ -47,7 +61,20 @@ function Index() {
           </Box>
         )}
         <Grid container spacing={3}>
-          {data?.items?.map((x, i) => (
+          {recipeList.length === 0 && (
+            <Box
+              sx={{
+                display: 'flex',
+                height: '80vh',
+                width: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Typography>There are no recipes to display!</Typography>
+            </Box>
+          )}
+          {recipeList.map((x, i) => (
             <Grid
               item
               sm={6}
