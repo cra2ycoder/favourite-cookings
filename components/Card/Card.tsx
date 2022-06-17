@@ -10,7 +10,7 @@ export default function MultiActionAreaCard(props) {
     snippet: { title = '', thumbnails = {}, resourceId = {} } = {},
     state: {
       defaultCardIndex = 0,
-      activeVideoCard,
+      activeVideoCard = -1,
       setActiveVideoCard = () => {},
     } = {},
   } = props
