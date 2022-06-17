@@ -17,12 +17,12 @@ html {
 
 
 .hasVideo .grid-overwrites {
-  flex-grow: 1;
-  max-width: inherit;
+  flex-grow: 1 !important;
+  max-width: inherit !important;
 }
 
 .showVideo {
-  max-width: 100%;
-  flex-basis: 100%;
+  max-width: 100% !important;
+  flex-basis: 100% !important;
   height: 52vh;
 }
