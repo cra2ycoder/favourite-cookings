@@ -7,7 +7,7 @@ interface IHeadingProps {
 
 function PrimaryHeading(props: IHeadingProps) {
   return (
-    <Box width="100%" paddingTop="2rem" marginBottom="2rem">
+    <Box width="100%" paddingTop="2rem" marginBottom="1rem">
       <Typography
         align="center"
         fontSize={72}
