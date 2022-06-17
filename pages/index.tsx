@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import useSwr from 'swr'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
@@ -7,16 +8,34 @@ import { PrimaryHeading } from '@components/Base/Typography'
 import { fetcher } from '../utils'
 
 function Index() {
-  const { data = [], error = {} } = useSwr('/api/home', fetcher)
+  const { data = {}, error = {} } = useSwr('/api/home', fetcher)
+  const [activeVideoCard, setActiveVideoCard] = useState(-1)
 
   return (
     <Container maxWidth="lg">
       <PrimaryHeading text="Favorite Cookings" />
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={3}>
-          {data.map((x, i) => (
-            <Grid item xs={12} lg={3} md={3} key={`home-list-${i}`}>
-              <CustomCard {...x} />
+          {data?.items?.map((x, i) => (
+            <Grid
+              item
+              sm={6}
+              xs={12}
+              lg={3}
+              md={4}
+              key={`dynamic-list-${i}`}
+              className={`grid-overwrites ${
+                activeVideoCard === i ? 'showVideo' : ''
+              }`}
+            >
+              <CustomCard
+                {...x}
+                state={{
+                  defaultCardIndex: i,
+                  activeVideoCard,
+                  setActiveVideoCard,
+                }}
+              />
             </Grid>
           ))}
         </Grid>
@@ -32,7 +51,7 @@ function Index() {
  * @returns
  */
 export async function getServerSideProps() {
-  return {}
+  return { props: {} }
 }
 
 export { Index }
