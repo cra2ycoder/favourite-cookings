@@ -17,7 +17,7 @@ export default function MultiActionAreaCard(props) {
 
   const [playVideo, setPlayVideo] = useState<boolean>(false)
 
-  const videoId = `http://www.youtube.com/embed/${resourceId?.videoId}?enablejsapi=1`
+  const videoId = `https://www.youtube.com/embed/${resourceId?.videoId}?enablejsapi=1`
 
   const loadVideo = () => {
     setPlayVideo(true)
