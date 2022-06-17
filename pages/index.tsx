@@ -3,9 +3,11 @@ import useSwr from 'swr'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
-import CustomCard from '../components/Card'
+import CustomCard from '@components/Card'
+import { Filter } from '@components/Base/Filter'
 import { PrimaryHeading } from '@components/Base/Typography'
 import CircularProgress from '@mui/material/CircularProgress'
+import Typography from '@mui/material/Typography'
 import { fetcher } from '../utils'
 
 function Index() {
@@ -15,6 +17,18 @@ function Index() {
   return (
     <Container maxWidth="lg">
       <PrimaryHeading text="Favorite Recipes" />
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
+        <Typography align="center" fontSize={32} fontWeight={700}>
+          Total: {data?.items?.length}
+        </Typography>
+        <Filter />
+      </Box>
       <Box
         sx={{ flexGrow: 1 }}
         className={activeVideoCard !== -1 ? 'hasVideo' : ''}
