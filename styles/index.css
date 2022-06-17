@@ -15,7 +15,8 @@ html {
   position: relative;
 }
 
-.grid-overwrites {
+
+.hasVideo .grid-overwrites {
   flex-grow: 1;
   max-width: inherit;
 }

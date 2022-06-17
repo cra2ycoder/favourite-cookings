@@ -5,6 +5,7 @@ import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
 import CustomCard from '../components/Card'
 import { PrimaryHeading } from '@components/Base/Typography'
+import CircularProgress from '@mui/material/CircularProgress'
 import { fetcher } from '../utils'
 
 function Index() {
@@ -13,8 +14,24 @@ function Index() {
 
   return (
     <Container maxWidth="lg">
-      <PrimaryHeading text="Favorite Cookings" />
-      <Box sx={{ flexGrow: 1 }}>
+      <PrimaryHeading text="Favorite Recipes" />
+      <Box
+        sx={{ flexGrow: 1 }}
+        className={activeVideoCard !== -1 ? 'hasVideo' : ''}
+      >
+        {Object.keys(data).length === 0 && (
+          <Box
+            sx={{
+              display: 'flex',
+              height: '80vh',
+              width: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <CircularProgress />
+          </Box>
+        )}
         <Grid container spacing={3}>
           {data?.items?.map((x, i) => (
             <Grid
