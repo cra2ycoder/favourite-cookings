@@ -4,30 +4,15 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
+import { recipeMap, getRecipeFilters } from '@utils/index'
 
-const recipeMap = new Map()
-recipeMap.set('Veg Biryani', ['mutton', 'biryani'])
-recipeMap.set('Non-Veg Biryani', ['mutton', 'chicken', 'biryani'])
-recipeMap.set('Veg Gravy', ['mushroom', 'gravy'])
-recipeMap.set('Non-Veg Gravy', ['chicken', 'gravy'])
-recipeMap.set('Sweet', ['sweet'])
-recipeMap.set('Poriyal', ['poriyal', 'kootu'])
-recipeMap.set('Kuzhambu', ['kuzhambu', 'Kulambu', 'curry', 'sambar'])
-recipeMap.set('Rasam', ['rasam'])
-
-const getRecipeFilters = () => {
-  let arr = []
-  recipeMap.forEach((value, key) => {
-    arr.push(key)
-  })
-  return arr
-}
-
-function Filter() {
+function Filter(props) {
   const [activeFilter, setActiveFilter] = useState('')
 
   const handleChange = (event: SelectChangeEvent) => {
-    setActiveFilter(event.target.value as string)
+    let val = event.target.value as string
+    setActiveFilter(val)
+    props?.onFilterChange(val)
   }
 
   return (
