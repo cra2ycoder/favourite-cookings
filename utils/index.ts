@@ -7,8 +7,9 @@ recipeMap.set('Veg Gravy', ['mushroom', 'gravy'])
 recipeMap.set('Non-Veg Gravy', ['chicken', 'gravy'])
 recipeMap.set('Sweet', ['sweet'])
 recipeMap.set('Poriyal', ['kootu', 'poriyal'])
-recipeMap.set('Kuzhambu', ['Kulambu', 'curry', 'sambar', 'kuzhambu'])
+recipeMap.set('Kuzhambu', ['kulambu', 'curry', 'sambar', 'kuzhambu'])
 recipeMap.set('Rasam', ['rasam'])
+recipeMap.set('Dry', ['dry'])
 
 export const getRecipeFilters = () => {
   let arr = []
