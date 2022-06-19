@@ -38,7 +38,7 @@ function Index() {
           alignItems: 'center',
         }}
       >
-        <Typography align="center" fontSize={32} fontWeight={700}>
+        <Typography align="center" fontSize={'3vh'} fontWeight={700}>
           Total: {recipeList.length}
         </Typography>
         <Filter onFilterChange={onFilterChange} />
