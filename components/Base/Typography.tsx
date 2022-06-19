@@ -10,8 +10,8 @@ function PrimaryHeading(props: IHeadingProps) {
     <Box width="100%" paddingTop="2rem" marginBottom="1rem">
       <Typography
         align="center"
-        fontSize={72}
-        fontFamily={'inherit'}
+        fontSize="6vh"
+        fontFamily="inherit"
         fontWeight={900}
       >
         {props?.text || ''}
