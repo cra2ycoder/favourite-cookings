@@ -16,7 +16,8 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "swr": "1.2.0",
-    "dotenv": "16.0.1"
+    "dotenv": "16.0.1",
+    "react-lazy-load-image-component": "1.5.4"
   },
   "devDependencies": {
     "prettier": "2.5.1",
