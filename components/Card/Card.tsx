@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
-import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import { CardActionArea } from '@mui/material'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 export default function MultiActionAreaCard(props) {
   const {
@@ -35,18 +35,14 @@ export default function MultiActionAreaCard(props) {
     >
       <CardActionArea>
         {!shouldLoadVideo && (
-          <CardMedia
-            component="img"
-            height="140"
-            image={thumbnails?.medium?.url}
-            alt="green iguana"
-          />
+          <LazyLoadImage alt={title} src={thumbnails?.medium?.url} />
         )}
         {shouldLoadVideo && (
           <iframe
             id="player"
             width="100%"
             height="390"
+            allowFullScreen={true}
             src={videoId}
             frameBorder="0"
           />
