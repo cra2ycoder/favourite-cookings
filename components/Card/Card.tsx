@@ -35,7 +35,11 @@ export default function MultiActionAreaCard(props) {
     >
       <CardActionArea>
         {!shouldLoadVideo && (
-          <LazyLoadImage alt={title} src={thumbnails?.medium?.url} />
+          <LazyLoadImage
+            alt={title}
+            src={thumbnails?.medium?.url}
+            width="100%"
+          />
         )}
         {shouldLoadVideo && (
           <iframe
