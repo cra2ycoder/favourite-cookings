@@ -4,9 +4,14 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
-import { recipeMap, getRecipeFilters } from '@utils/index'
 
-function Filter(props) {
+interface IFilterProps {
+  label: string
+  list: string[]
+  onFilterChange?: (val: string) => void
+}
+
+function Filter(props: IFilterProps) {
   const [activeFilter, setActiveFilter] = useState('')
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -24,16 +29,21 @@ function Filter(props) {
         marginBottom: '1rem',
       }}
     >
-      <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel id="demo-simple-select-label">Filter By:</InputLabel>
+      <FormControl
+        variant="standard"
+        sx={{ m: 1, minWidth: 120, width: '220px' }}
+      >
+        <InputLabel id="demo-simple-select-label">
+          {props?.label || ''}
+        </InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={activeFilter}
-          label="Filter By"
+          label={props?.label || ''}
           onChange={handleChange}
         >
-          {getRecipeFilters().map((x, idx) => (
+          {props?.list?.map((x, idx) => (
             <MenuItem key={`menu-item-${idx}`} value={x}>
               {x}
             </MenuItem>
