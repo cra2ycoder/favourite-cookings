@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useState, memo } from 'react'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import { CardActionArea } from '@mui/material'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 
-export default function MultiActionAreaCard(props) {
+function MultiActionAreaCard(props) {
   const {
     snippet: { title = '', thumbnails = {}, resourceId = {} } = {},
     state: {
@@ -28,6 +28,7 @@ export default function MultiActionAreaCard(props) {
 
   return (
     <Card
+      className="multiaction-area-card"
       square={true}
       variant="outlined"
       style={{ display: 'flex', height: '100%', borderRadius: '0.5rem' }}
@@ -66,3 +67,5 @@ export default function MultiActionAreaCard(props) {
     </Card>
   )
 }
+
+export default memo(MultiActionAreaCard)
