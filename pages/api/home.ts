@@ -3,9 +3,10 @@ export default async function handler(req, res) {
     // console.log(req.url)
     const playlistId = process.env.YOUTUBE_PLAYLIST_ID
     const apiKey = process.env.YOUTUBE_API_KEY
+    const youtubeApiUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&maxResults=100`
 
     const results = await fetch(
-      `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&maxResults=100&playlistId=${playlistId}&key=${apiKey}`,
+      `${youtubeApiUrl}&playlistId=${playlistId}&key=${apiKey}`,
       { method: 'GET' }
     )
       .then(x => x.json())
