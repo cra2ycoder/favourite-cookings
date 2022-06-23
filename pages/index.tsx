@@ -8,7 +8,15 @@ import { Filter } from '@components/Base/Filter'
 import { PrimaryHeading } from '@components/Base/Typography'
 import CircularProgress from '@mui/material/CircularProgress'
 import Typography from '@mui/material/Typography'
-import { fetcher, filterDataByMap } from '@utils/index'
+import {
+  fetcher,
+  filterDataByMap,
+  getRecipeFilters,
+  getChefFilters,
+  setChefMapByData,
+  recipeMap,
+  chefMap,
+} from '@utils/index'
 
 function Index() {
   const { data = {}, error = {} } = useSwr('/api/home', fetcher)
@@ -17,14 +25,34 @@ function Index() {
   const [activeVideoCard, setActiveVideoCard] = useState(-1)
 
   const onFilterChange = function (curFilter) {
-    const filteredList = filterDataByMap(curFilter, data.items)
-    console.log({ filteredList })
+    const filteredList = filterDataByMap(
+      curFilter,
+      recipeMap,
+      data.items,
+      'title'
+    )
+    console.log(filteredList)
+    setRecipeList([...filteredList])
+  }
+
+  const onChefFilterChange = function (curFilter) {
+    const filteredList = filterDataByMap(
+      curFilter,
+      chefMap,
+      data.items,
+      'videoOwnerChannelTitle'
+    )
+    console.log(filteredList)
     setRecipeList([...filteredList])
   }
 
   useEffect(() => {
     if (Object.keys(data).length) {
+      // setting data to the list
       setRecipeList(data?.items || [])
+
+      // set chef map
+      setChefMapByData(data?.items)
     }
   }, [data])
 
@@ -41,7 +69,18 @@ function Index() {
         <Typography align="center" fontSize={'3vh'} fontWeight={700}>
           Total: {recipeList.length}
         </Typography>
-        <Filter onFilterChange={onFilterChange} />
+        <Box sx={{ display: 'flex' }}>
+          <Filter
+            label="Filter By Chef"
+            list={getChefFilters() || []}
+            onFilterChange={onChefFilterChange}
+          />
+          <Filter
+            label="Filter By Recipe Category"
+            list={getRecipeFilters() || []}
+            onFilterChange={onFilterChange}
+          />
+        </Box>
       </Box>
       <Box
         sx={{ flexGrow: 1 }}
