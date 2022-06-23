@@ -23,19 +23,23 @@ function Index() {
 
   const [recipeList, setRecipeList] = useState([])
   const [activeVideoCard, setActiveVideoCard] = useState(-1)
+  const [activeFilter, setActiveFilter] = useState('')
 
-  const onFilterChange = function (curFilter) {
+  const onFilterChange = function (curFilter, filterLabel) {
+    // console.log({ curFilter })
     const filteredList = filterDataByMap(
       curFilter,
       recipeMap,
       data.items,
       'title'
     )
-    console.log(filteredList)
+    // console.log(filteredList, curFilter, `${filterLabel}|${curFilter}`)
+    setActiveFilter(`${filterLabel}|${curFilter}`)
     setRecipeList([...filteredList])
   }
 
-  const onChefFilterChange = function (curFilter) {
+  const onChefFilterChange = function (curFilter, filterLabel) {
+    // console.log({ curFilter })
     const filteredList = filterDataByMap(
       curFilter,
       chefMap,
@@ -43,8 +47,22 @@ function Index() {
       'videoOwnerChannelTitle'
     )
     console.log(filteredList)
+    setActiveFilter(`${filterLabel}|${curFilter}`)
     setRecipeList([...filteredList])
   }
+
+  const filters = [
+    {
+      label: 'Filter By Channel',
+      list: getChefFilters() || [],
+      onFilterChange: onChefFilterChange,
+    },
+    {
+      label: 'Filter By Recipe Category',
+      list: getRecipeFilters() || [],
+      onFilterChange: onFilterChange,
+    },
+  ]
 
   useEffect(() => {
     if (Object.keys(data).length) {
@@ -53,6 +71,8 @@ function Index() {
 
       // set chef map
       setChefMapByData(data?.items)
+
+      setActiveFilter(`${filters[filters.length - 1].label}|All`)
     }
   }, [data])
 
@@ -71,16 +91,16 @@ function Index() {
           Total: {recipeList.length}
         </Typography>
         <Box className="filter-panel" sx={{ display: 'flex' }}>
-          <Filter
-            label="Filter By Chef"
-            list={getChefFilters() || []}
-            onFilterChange={onChefFilterChange}
-          />
-          <Filter
-            label="Filter By Recipe Category"
-            list={getRecipeFilters() || []}
-            onFilterChange={onFilterChange}
-          />
+          {filters?.map((x, id) => (
+            <Filter
+              {...x}
+              key={`custom-filter-${id}`}
+              shouldDisable={
+                x.label !== activeFilter.split('|')[0] &&
+                activeFilter.split('|')[1] !== 'All'
+              }
+            />
+          ))}
         </Box>
       </Box>
       <Box

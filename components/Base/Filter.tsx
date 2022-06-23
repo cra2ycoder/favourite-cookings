@@ -8,7 +8,8 @@ import Select, { SelectChangeEvent } from '@mui/material/Select'
 interface IFilterProps {
   label: string
   list: string[]
-  onFilterChange?: (val: string) => void
+  shouldDisable?: boolean
+  onFilterChange?: (val: string, label?: string) => void
 }
 
 function Filter(props: IFilterProps) {
@@ -17,7 +18,7 @@ function Filter(props: IFilterProps) {
   const handleChange = (event: SelectChangeEvent) => {
     let val = event.target.value as string
     setActiveFilter(val)
-    props?.onFilterChange(val)
+    props?.onFilterChange(val, props?.label)
   }
 
   return (
@@ -27,6 +28,8 @@ function Filter(props: IFilterProps) {
         display: 'flex',
         justifyContent: 'flex-end',
         marginBottom: '1rem',
+        opacity: props?.shouldDisable ? 0.4 : 1,
+        pointerEvents: props?.shouldDisable ? 'none' : 'auto',
       }}
     >
       <FormControl
