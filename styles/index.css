@@ -30,3 +30,21 @@ html {
 .multiaction-area-card button:first-child {
   flex-direction: column;
 }
+
+@media (max-width: 680px) {
+  .page-header {
+    flex-wrap: wrap;
+  }
+
+  .page-header > * {
+    width: 100%;
+  }
+
+  .page-header > p {
+    text-align: left;
+  }
+
+  .page-header > .filter-panel {
+    justify-content: space-between;
+  }
+} 

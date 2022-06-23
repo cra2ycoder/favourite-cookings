@@ -60,6 +60,7 @@ function Index() {
     <Container maxWidth="lg">
       <PrimaryHeading text="Favorite Recipes" />
       <Box
+        className="page-header"
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
@@ -69,7 +70,7 @@ function Index() {
         <Typography align="center" fontSize={'3vh'} fontWeight={700}>
           Total: {recipeList.length}
         </Typography>
-        <Box sx={{ display: 'flex' }}>
+        <Box className="filter-panel" sx={{ display: 'flex' }}>
           <Filter
             label="Filter By Chef"
             list={getChefFilters() || []}
