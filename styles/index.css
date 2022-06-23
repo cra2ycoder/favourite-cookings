@@ -26,3 +26,7 @@ html {
   flex-basis: 100% !important;
   height: 52vh;
 }
+
+.multiaction-area-card button:first-child {
+  flex-direction: column;
+}
