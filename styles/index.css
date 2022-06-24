@@ -31,6 +31,10 @@ html {
   flex-direction: column;
 }
 
+.multiaction-area-card img {
+  min-height: 20%;
+}
+
 @media (max-width: 680px) {
   .page-header {
     flex-wrap: wrap;
