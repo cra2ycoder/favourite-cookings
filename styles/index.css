@@ -29,6 +29,7 @@ html {
 
 .multiaction-area-card button:first-child {
   flex-direction: column;
+  align-items: flex-start;
 }
 
 .multiaction-area-card img {
